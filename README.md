@@ -193,6 +193,12 @@ extractor_task >> transformer_task >> trainer_task >> evaluator_task
 3. `train_model_task` должна успешно завершиться перед запуском `evaluate_model_task`
 
 
+##### Установка
+
+1. Скопировать папку `container`
+
+2. Выполнить нижеследующие команды:
+
 Сборка, запуск и остановка:
 ```bash
 docker compose build --no-cache airflow-init    
