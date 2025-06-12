@@ -1,0 +1,46 @@
+[2025-06-12T14:21:54.931+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-06-12T14:21:54.941+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_exam_pipeline.download_data_task manual__2025-06-12T14:21:53.683439+00:00 [queued]>
+[2025-06-12T14:21:54.944+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_exam_pipeline.download_data_task manual__2025-06-12T14:21:53.683439+00:00 [queued]>
+[2025-06-12T14:21:54.944+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 2
+[2025-06-12T14:21:54.949+0000] {taskinstance.py:2327} INFO - Executing <Task(BashOperator): download_data_task> on 2025-06-12 14:21:53.683439+00:00
+[2025-06-12T14:21:54.955+0000] {warnings.py:110} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=175) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-12T14:21:54.956+0000] {standard_task_runner.py:63} INFO - Started process 177 to run task
+[2025-06-12T14:21:54.957+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'etl_exam_pipeline', 'download_data_task', 'manual__2025-06-12T14:21:53.683439+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/pipeline_dag.py', '--cfg-path', '/tmp/tmpgm9k4l9i']
+[2025-06-12T14:21:54.958+0000] {standard_task_runner.py:91} INFO - Job 8: Subtask download_data_task
+[2025-06-12T14:21:54.985+0000] {task_command.py:426} INFO - Running <TaskInstance: etl_exam_pipeline.download_data_task manual__2025-06-12T14:21:53.683439+00:00 [running]> on host 503649b6cad7
+[2025-06-12T14:21:55.027+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_exam_pipeline' AIRFLOW_CTX_TASK_ID='download_data_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-12T14:21:53.683439+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-12T14:21:53.683439+00:00'
+[2025-06-12T14:21:55.028+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-06-12T14:21:55.029+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-06-12T14:21:55.029+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/*** && python etl/extractor.py']
+[2025-06-12T14:21:55.033+0000] {subprocess.py:86} INFO - Output:
+[2025-06-12T14:21:55.301+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2025-06-12T14:21:55.302+0000] {subprocess.py:93} INFO -   File "/opt/***/etl/extractor.py", line 7, in <module>
+[2025-06-12T14:21:55.303+0000] {subprocess.py:93} INFO -     logger = setup_logger('../logs/etl_pipeline.log')
+[2025-06-12T14:21:55.305+0000] {subprocess.py:93} INFO -              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2025-06-12T14:21:55.305+0000] {subprocess.py:93} INFO -   File "/opt/***/etl/logger.py", line 8, in setup_logger
+[2025-06-12T14:21:55.307+0000] {subprocess.py:93} INFO -     os.makedirs(os.path.dirname(log_file), exist_ok=True)
+[2025-06-12T14:21:55.307+0000] {subprocess.py:93} INFO -   File "<frozen os>", line 225, in makedirs
+[2025-06-12T14:21:55.307+0000] {subprocess.py:93} INFO - PermissionError: [Errno 13] Permission denied: '../logs'
+[2025-06-12T14:21:55.314+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2025-06-12T14:21:55.314+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-06-12T14:21:55.320+0000] {taskinstance.py:2890} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 243, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2025-06-12T14:21:55.322+0000] {taskinstance.py:1205} INFO - Marking task as UP_FOR_RETRY. dag_id=etl_exam_pipeline, task_id=download_data_task, execution_date=20250612T142153, start_date=20250612T142154, end_date=20250612T142155
+[2025-06-12T14:21:55.328+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 8 for task download_data_task (Bash command failed. The command returned a non-zero exit code 1.; 177)
+[2025-06-12T14:21:55.349+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2025-06-12T14:21:55.363+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-12T14:21:55.364+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

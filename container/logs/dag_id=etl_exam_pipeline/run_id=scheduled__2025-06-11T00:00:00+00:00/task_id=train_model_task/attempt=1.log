@@ -1,0 +1,34 @@
+[2025-06-12T14:47:20.245+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-06-12T14:47:20.259+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_exam_pipeline.train_model_task scheduled__2025-06-11T00:00:00+00:00 [queued]>
+[2025-06-12T14:47:20.264+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_exam_pipeline.train_model_task scheduled__2025-06-11T00:00:00+00:00 [queued]>
+[2025-06-12T14:47:20.264+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 2
+[2025-06-12T14:47:20.270+0000] {taskinstance.py:2327} INFO - Executing <Task(BashOperator): train_model_task> on 2025-06-11 00:00:00+00:00
+[2025-06-12T14:47:20.279+0000] {warnings.py:110} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=105) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-06-12T14:47:20.280+0000] {standard_task_runner.py:63} INFO - Started process 107 to run task
+[2025-06-12T14:47:20.281+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'etl_exam_pipeline', 'train_model_task', 'scheduled__2025-06-11T00:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/pipeline_dag.py', '--cfg-path', '/tmp/tmpz6ytma6c']
+[2025-06-12T14:47:20.282+0000] {standard_task_runner.py:91} INFO - Job 5: Subtask train_model_task
+[2025-06-12T14:47:20.304+0000] {task_command.py:426} INFO - Running <TaskInstance: etl_exam_pipeline.train_model_task scheduled__2025-06-11T00:00:00+00:00 [running]> on host 856a94aade24
+[2025-06-12T14:47:20.345+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_exam_pipeline' AIRFLOW_CTX_TASK_ID='train_model_task' AIRFLOW_CTX_EXECUTION_DATE='2025-06-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-06-11T00:00:00+00:00'
+[2025-06-12T14:47:20.346+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-06-12T14:47:20.347+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-06-12T14:47:20.348+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/etl/ && python trainer.py']
+[2025-06-12T14:47:20.353+0000] {subprocess.py:86} INFO - Output:
+[2025-06-12T14:47:21.153+0000] {subprocess.py:93} INFO - 2025-06-12 14:47:21,153 - etl_pipeline - INFO - === Запуск скрипта trainer.py ===
+[2025-06-12T14:47:21.155+0000] {subprocess.py:93} INFO - 2025-06-12 14:47:21,154 - etl_pipeline - INFO - Загрузка данных из ../results/train_test/...
+[2025-06-12T14:47:21.158+0000] {subprocess.py:93} INFO - 2025-06-12 14:47:21,157 - etl_pipeline - INFO - Данные загружены. X_train: (455, 30), y_train: (455,)
+[2025-06-12T14:47:21.158+0000] {subprocess.py:93} INFO - 2025-06-12 14:47:21,158 - etl_pipeline - INFO - Начало обучения модели...
+[2025-06-12T14:47:21.158+0000] {subprocess.py:93} INFO - 2025-06-12 14:47:21,158 - etl_pipeline - INFO - Создание пайплайна...
+[2025-06-12T14:47:21.162+0000] {subprocess.py:93} INFO - Fitting 5 folds for each of 30 candidates, totalling 150 fits
+[2025-06-12T14:47:27.021+0000] {subprocess.py:93} INFO - 2025-06-12 14:47:27,012 - etl_pipeline - INFO - Обучение завершено. Лучшие параметры: {'model__C': 1, 'model__penalty': 'l2', 'pca__n_components': 0.9}
+[2025-06-12T14:47:27.055+0000] {subprocess.py:93} INFO - 2025-06-12 14:47:27,017 - etl_pipeline - INFO - Лучшая точность на трейне: 0.9692
+[2025-06-12T14:47:27.058+0000] {subprocess.py:93} INFO - 2025-06-12 14:47:27,017 - etl_pipeline - INFO - Сохранение модели в ../results/models/...
+[2025-06-12T14:47:27.060+0000] {subprocess.py:93} INFO - 2025-06-12 14:47:27,020 - etl_pipeline - INFO - Модель успешно сохранена в ../results/models/logistic_regression.pkl
+[2025-06-12T14:47:27.061+0000] {subprocess.py:93} INFO - 2025-06-12 14:47:27,020 - etl_pipeline - INFO - === Скрипт trainer.py успешно выполнен ===
+[2025-06-12T14:47:27.778+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-06-12T14:47:27.781+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-06-12T14:47:27.813+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=etl_exam_pipeline, task_id=train_model_task, execution_date=20250611T000000, start_date=20250612T144720, end_date=20250612T144727
+[2025-06-12T14:47:27.851+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2025-06-12T14:47:27.874+0000] {taskinstance.py:3482} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-06-12T14:47:27.875+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

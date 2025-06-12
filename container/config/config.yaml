@@ -1,0 +1,6 @@
+DATA_URL: "https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.data" 
+RAW_DATA_PATH: "../results/raw/wdbc.data"
+OUTPUT_DIR: "../results/train_test/"
+METRICS_OUTPUT_PATH: "../results/metrics/"
+MODEL_OUTPUT_PATH: "../results/models/"
+PROJECT_DIR: "/opt/airflow"
